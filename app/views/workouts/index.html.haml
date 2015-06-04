@@ -1,0 +1,26 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.panel-default
+            .panel-body
+                .page-header
+                    %h3 My Training Log
+            
+                // Show all workouts
+                - if @workouts.empty?
+                    %p.text-center You haven't logged any workouts.
+                    %br
+                
+                #workouts
+                    - @workouts.each do |w|
+                        .well.well-sm
+                            %h4
+                                %strong= link_to w.date.to_s.to_time.strftime('%B %e %Y'), w
+                            %p
+                                %strong Exercises:
+                                - w.workout_exercises.each do |we|
+                                    = Exercise.find(we.exercise_id).name
+                                    ,
+            
+    
+                .row.text-center
+                    = link_to 'Log a New Workout', new_workout_path, class: 'btn btn-success'

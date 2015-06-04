@@ -1,0 +1,14 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.panel-default
+            .panel-body
+                %h3 My Exercises
+                %br
+                - @exercises.each do |e|
+                    #exercise
+                        %h4
+                            %strong= e.name
+                        %p= e.description
+                    %hr
+                    
+                = link_to 'Add New Exercise', new_exercise_path

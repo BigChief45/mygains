@@ -1,0 +1,21 @@
+.nested-fields
+    
+    .panel.panel-default
+        .panel-body
+    
+            .form-group
+                %h4 Exercise
+                = f.collection_select(:exercise_id, Exercise.all, :id, :name, {}, { class: 'form-control input-sm'})
+        
+            %h4 Sets
+            #exercise_sets
+                = f.simple_fields_for :exercise_sets do |set|
+                    = render 'exercise_set_fields', :f => set
+                
+                .links
+                    = link_to_add_association 'Add Set', f, :exercise_sets
+    
+    %br
+    
+    = link_to_remove_association "Remove Exercise", f
+    %hr

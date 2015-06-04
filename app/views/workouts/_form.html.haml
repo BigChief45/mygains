@@ -1,0 +1,25 @@
+= simple_form_for @workout do |f|
+    
+    .row
+        .col-md-12
+            .form-group.form-inline
+                = f.input :date, label: 'Date', input_html: { class: 'form-control input-sm' }
+            
+            %hr
+    .row
+        .col-md-12
+            %h3 Exercises
+            
+            #workout_exercises
+                = f.simple_fields_for :workout_exercises do |exercise|
+                    = render 'workout_exercise_fields', :f => exercise
+                .links
+                    = link_to_add_association 'Add Exercise', f, :workout_exercises
+            
+    
+    %hr
+    
+    .row
+        .col-md-12
+            .form-group
+                = f.button :submit, 'Log Workout', class: 'btn btn-primary'

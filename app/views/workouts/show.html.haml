@@ -1,0 +1,38 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.panel-default
+            .panel-body
+                .page-header
+                    %h3= @workout.date.to_s.to_time.strftime('%B %e %Y')
+                
+                .row
+                    .col-md-10.col-md-offset-1
+                
+                        - @workout.workout_exercises.each do |we|
+                            
+                            %h4.text-center
+                                %strong= Exercise.find(we.exercise_id).name
+                            
+                            // Display Table
+                            .table-responsive
+                                %table.table.table-striped.table-hover
+                                    %thead
+                                        %tr
+                                            %th.text-center Set #
+                                            %th.text-center Weight (lbs)
+                                            %th.text-center Reps
+                                    %tbody
+                                        - we.exercise_sets.each_with_index do |set, i|
+                                            %tr
+                                                %td.text-center= "Set #{i+1}"
+                                                %td.text-center= set.weight
+                                                %td.text-center= set.reps
+                            %hr
+                            
+                .row.text-center
+                    .col-md-12
+                        = link_to 'Delete Workout', workout_path(@workout), method: :delete, class: 'btn btn-danger'            
+                 
+                %br 
+                            
+                = link_to 'Back', workouts_path

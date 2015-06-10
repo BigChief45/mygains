@@ -34,7 +34,15 @@ class WorkoutsController < ApplicationController
     end
     
     def update
-        
+        respond_to do |format|
+            if @workout.update(workout_params)
+                format.html { redirect_to @workout, :flash => { :success => 'Workout updated successfully.' } }
+                format.json { render :show, status: :updated, location: @workout }
+            else
+                format.html { render :edit, :flash => { :danger => 'There was an error updating the workout' } }
+                format.json { render json: @workout.errors, status: :unprocessable_entity }
+            end
+        end
     end
     
     def destroy
@@ -48,7 +56,7 @@ class WorkoutsController < ApplicationController
     private
     
         def workout_params
-            params.require(:workout).permit(:date, workout_exercises_attributes: [:id, :exercise_id, :_destroy, exercise_sets_attributes: [:id, :reps, :workout_exercise_id, :weight, :_destroy]])  
+            params.require(:workout).permit(:date, :remarks, workout_exercises_attributes: [:id, :exercise_id, :_destroy, exercise_sets_attributes: [:id, :reps, :workout_exercise_id, :weight, :_destroy]])  
         end
         
         def find_workout

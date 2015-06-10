@@ -16,6 +16,15 @@
                 .links
                     = link_to_add_association 'Add Exercise', f, :workout_exercises
             
+    %hr        
+    
+    .row
+        .col-md-12
+            %h3 Remarks
+            
+            .form-group
+                = f.label :remarks
+                = f.text_area :remarks, class: 'form-control'
     
     %hr
     

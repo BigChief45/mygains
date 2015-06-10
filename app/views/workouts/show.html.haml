@@ -5,6 +5,15 @@
                 .page-header
                     %h3= @workout.date.to_s.to_time.strftime('%B %e %Y')
                 
+                - if !@workout.remarks.blank?
+                    .row
+                        .col-md-12
+                            .panel.panel-info
+                                .panel-heading
+                                    %h1.panel-title Remarks
+                                .panel-body
+                                    %p= @workout.remarks
+                
                 .row
                     .col-md-10.col-md-offset-1
                 
@@ -29,10 +38,22 @@
                                                 %td.text-center= set.reps
                             %hr
                             
+      
+                            
                 .row.text-center
                     .col-md-12
-                        = link_to 'Delete Workout', workout_path(@workout), method: :delete, class: 'btn btn-danger'            
+                        = link_to 'Delete Workout', workout_path(@workout), method: :delete, class: 'btn btn-danger'
+                        
+                        = link_to 'Edit Workout', edit_workout_path(@workout), class: 'btn btn-info'
                  
                 %br 
+                
+                .row
+                    .col-md-12
+                        %ul.pager
+                            %li.pull-left 
+                                = link_to '← Previous', @workout.previous
+                            %li.pull-right
+                                = link_to 'Next →', @workout.next
                             
                 = link_to 'Back', workouts_path

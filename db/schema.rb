@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524113756) do
+ActiveRecord::Schema.define(version: 20150610003859) do
 
   create_table "exercise_sets", force: true do |t|
     t.datetime "created_at"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150524113756) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.date     "date"
+    t.string   "remarks"
   end
 
 end

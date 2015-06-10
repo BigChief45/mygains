@@ -7,4 +7,14 @@ class Workout < ActiveRecord::Base
     
     has_many :workout_exercises, dependent: :destroy
     accepts_nested_attributes_for :workout_exercises, :reject_if => :all_blank, :allow_destroy => true
+    
+    
+    def next
+        self.class.where("id > ?", id).first
+    end
+
+    def previous
+        self.class.where("id < ?", id).last
+    end
+    
 end

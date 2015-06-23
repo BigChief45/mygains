@@ -5,22 +5,30 @@
                 .page-header
                     %h3 My Training Log
             
+            
+                .row.text-center
+                    = link_to 'Log a New Workout', new_workout_path, class: 'btn btn-success'
+            
+                %br
+            
                 // Show all workouts
                 - if @workouts.empty?
                     %p.text-center You haven't logged any workouts.
                     %br
-                
-                #workouts
-                    - @workouts.each do |w|
-                        .well.well-sm
-                            %h4
-                                %strong= link_to w.date.to_s.to_time.strftime('%B %e %Y'), w
-                            %p
-                                %strong Exercises:
-                                - w.workout_exercises.each do |we|
-                                    = Exercise.find(we.exercise_id).name
-                                    ,
+                - else
+                    #workouts
+                        - @workouts.each do |w|
+                            .well
+                                %h4
+                                    %strong= link_to w.date.to_s.to_time.strftime('%B %e %Y'), w
+                                %p
+                                    %strong Exercises:
+                                    - w.workout_exercises.each do |we|
+                                        = Exercise.find(we.exercise_id).name
+                                        ,
             
+                .row.text-center
+                    = will_paginate @workouts, renderer: BootstrapPagination::Rails
     
                 .row.text-center
                     = link_to 'Log a New Workout', new_workout_path, class: 'btn btn-success'

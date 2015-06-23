@@ -31,6 +31,8 @@ gem 'haml', '~> 4.0.5'
 gem 'simple_form', '~> 3.0.2'
 gem 'devise', '~> 3.3.0'
 gem 'cocoon'
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

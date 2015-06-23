@@ -5,6 +5,9 @@ class WorkoutsController < ApplicationController
     
     def index
         @workouts = current_user.workouts.order("created_at DESC")
+        
+        #Pagination
+        @workouts = @workouts.paginate(:page => params[:page], :per_page => 3)
     end
     
     def new

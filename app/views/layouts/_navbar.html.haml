@@ -1,0 +1,46 @@
+%nav.navbar.navbar-inverse{role: "navigation"}
+    .container
+
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+                %span.sr-only Toggle navigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+            %strong= link_to "MyGains", root_path, class: 'navbar-brand'
+        
+        / Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse
+            %ul.nav.navbar-nav
+          
+            %ul.nav.navbar-nav.navbar-right
+                - if user_signed_in?
+                    %li
+                        = link_to goals_path do
+                            %span.glyphicon.glyphicon-ok
+                            My Goals
+                
+                    %li
+                        = link_to workouts_path do
+                            %span.glyphicon.glyphicon-fire
+                            My Training Log
+                    
+                    %li
+                        = link_to exercises_path do
+                            %span.glyphicon.glyphicon-heart-empty
+                            My Exercises
+                    
+                    %li
+                        = link_to logout_path do
+                            %span.glyphicon.glyphicon-off
+                            Logout
+                    
+                - else
+                    %li
+                        = link_to "Register", register_path
+                
+                    %li
+                        = link_to "Login", login_path
+          
+        / /.navbar-collapse

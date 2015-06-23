@@ -1,0 +1,32 @@
+= simple_form_for @goal do |f|
+
+    .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control input-sm'
+        
+    .form-group.form-inline
+        = f.input :deadline, label: 'Goal Deadline', input_html: { class: 'form-control input-sm' }
+        
+    %hr    
+        
+    .form-group
+        = f.label :exercise_id, 'Exercise'
+        = f.collection_select(:exercise_id, Exercise.all, :id, :name, {}, { class: 'form-control input-sm'})
+        
+    .form-group
+        = f.label :weight, 'Weight Goal (lbs)'
+        = f.text_field :weight, class: 'form-control input-sm'
+        
+    .form-group
+        = f.label :reps, 'Reps Goal'
+        = f.text_field :reps, class: 'form-control input-sm'
+    
+    %hr
+    
+    .form-group
+        = f.label :description, 'Remarks'
+        = f.text_area :description, class: 'form-control'
+    
+    .form-group.text-center
+        = f.button :submit, 'Create Goal', class: 'btn btn-primary btn-sm'
+    

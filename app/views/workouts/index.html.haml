@@ -7,7 +7,9 @@
             
             
                 .row.text-center
-                    = link_to 'Log a New Workout', new_workout_path, class: 'btn btn-success'
+                    = link_to new_workout_path, class: 'btn btn-success' do
+                        %span.glyphicon.glyphicon-plus
+                        Log a New Workout
             
                 %br
             
@@ -29,6 +31,3 @@
             
                 .row.text-center
                     = will_paginate @workouts, renderer: BootstrapPagination::Rails
-    
-                .row.text-center
-                    = link_to 'Log a New Workout', new_workout_path, class: 'btn btn-success'

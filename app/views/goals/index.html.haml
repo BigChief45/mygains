@@ -1,0 +1,61 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.panel-default
+            .panel-body
+                .page-header
+                    %h3 My Goals
+            
+                
+                - if @goals.empty?
+                    %p.text-center
+                        Set goals for greater consistency, commitment and adherence. Monitor your goals and see how closer you are in reaching them!
+                    %br
+                
+                // Show all goals
+                - @goals.each do |g|
+                    .panel.panel-default
+                        .panel-body
+                            %h3.text-center.text-muted= g.title
+                        
+                            .row
+                                .col-md-6.col-md-offset-3
+                                    .progress.progress-striped
+                                        %div{ class: "progress-bar progress-bar-#{g.completed ? 'success' : 'warning'} has-tooltip", style: "min-width: 3em; width: #{g.progress}%;", "data-toggle" => "tooltip", "data-placement" => "top", :title => "#{g.progress}% Completed" }
+                                            = g.progress
+                                            \%
+                            %p
+                                %strong Exercise:
+                                = Exercise.find(g.exercise_id).name
+                        
+                            %p
+                                %strong Goal Weight:
+                                = g.weight
+                                lbs
+                                
+                            %p
+                                %strong Goal Reps:
+                                = g.reps
+                                reps
+                            
+                            %p
+                                %strong Status:
+                                - if g.completed?
+                                    %span.label.label-success Completed
+                                - else
+                                    %span.label.label-warning Not Completed
+                                    
+                            %ul.list-inline.pull-right
+                                %li
+                                    = link_to edit_goal_path(g), class: 'text-info' do
+                                        %span.glyphicon.glyphicon-pencil
+                                        Edit Goal
+                                
+                                %li
+                                    = link_to goal_path(g), method: :destroy, class: 'text-danger' do
+                                        %span.glyphicon.glyphicon-remove
+                                        Delete Goal
+                                    
+                .row.text-center
+                    = link_to new_workout_path, class: 'btn btn-success btn-sm' do
+                        %span.glyphicon.glyphicon-plus
+                        Set a New Goal

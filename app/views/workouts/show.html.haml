@@ -51,11 +51,16 @@
                             
       
                             
-                .row.text-center
-                    .col-md-12
-                        = link_to 'Delete Workout', workout_path(@workout), method: :delete, class: 'btn btn-danger'
-                        
-                        = link_to 'Edit Workout', edit_workout_path(@workout), class: 'btn btn-info'
+                %ul.list-inline.text-center
+                    %li
+                        = link_to edit_workout_path(@workout), class: 'text-info' do
+                            %span.glyphicon.glyphicon-pencil
+                            Edit Workout
+                    
+                    %li
+                        = link_to workout_path(@workout), method: :destroy, class: 'text-danger' do
+                            %span.glyphicon.glyphicon-remove
+                            Delete Workout
                  
                 %br 
                 

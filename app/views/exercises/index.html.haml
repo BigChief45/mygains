@@ -11,4 +11,18 @@
                         %p= e.description
                     %hr
                     
-                = link_to 'Add New Exercise', new_exercise_path
+                .row.text-center
+                    = link_to new_exercise_path do
+                        %span.glyphicon.glyphicon-plus
+                        Add New Exercise
+                
+                %h3 My Training Styles
+                
+                - if @styles.blank?
+                    %p.text-center There are no training styles. Create one below.
+                - else
+                    %ul.list-inline.text-center
+                        - @styles.each do |s|
+                            %li= s.name
+                
+                = render 'add_style'

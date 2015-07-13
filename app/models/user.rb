@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
   has_many :exercises, dependent: :destroy
   has_many :workouts, dependent: :destroy
   has_many :goals, dependent: :destroy
+  has_many :training_types, dependent: :destroy
   
 end

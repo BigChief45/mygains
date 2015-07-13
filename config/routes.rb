@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   
   resources :exercises
+  resources :training_types
   resources :goals
   
   root 'home#index'

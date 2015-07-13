@@ -32,6 +32,9 @@
                             
                             %h4.text-center
                                 %strong= Exercise.find(we.exercise_id).name
+                                %br
+                                - if !we.training_type_id.blank? 
+                                    %small= TrainingType.find(we.training_type_id).name
                             
                             // Display Table
                             .table-responsive

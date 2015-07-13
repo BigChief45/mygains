@@ -3,8 +3,12 @@
         .panel.panel-default
             .panel-body
                 .page-header
-                    %h3 My Training Log
-            
+                    %h3 
+                        My Training Log
+                        %small 
+                            (
+                            = pluralize(@workouts.count, 'Workout', 'Workouts')
+                            )
             
                 .row.text-center
                     = link_to new_workout_path, class: 'btn btn-success' do

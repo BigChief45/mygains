@@ -4,6 +4,8 @@ class ExercisesController < ApplicationController
     
     def index
         @exercises = Exercise.all.order("created_at DESC")
+        
+        @styles = current_user.training_types.all
     end
     
     def new
@@ -22,6 +24,10 @@ class ExercisesController < ApplicationController
                 format.json { render json: @exercise.errors, status: :unprocessable_entity }
             end
         end
+    end
+    
+    def add_style
+        
     end
     
     def show

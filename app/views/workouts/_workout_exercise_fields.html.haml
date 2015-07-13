@@ -3,9 +3,14 @@
     .panel.panel-default
         .panel-body
     
-            .form-group
-                %h4 Exercise
-                = f.collection_select(:exercise_id, Exercise.all, :id, :name, {}, { class: 'form-control input-sm'})
+            .row
+                .form-group
+                    .col-md-4
+                        %h4 Exercise
+                        = f.collection_select(:exercise_id, current_user.exercises.all, :id, :name, {}, { class: 'form-control input-sm'})
+                    .col-md-8
+                        %h4 Training Style
+                        = f.collection_select(:training_type_id, current_user.training_types.all, :id, :name, {}, { class: 'form-control input-sm'})
         
             %h4 Sets
             #exercise_sets

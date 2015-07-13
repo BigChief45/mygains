@@ -1,0 +1,7 @@
+= form_for TrainingType.new, class: 'form-inline' do |f|
+    .form-group
+        .row
+            .col-md-3
+                = f.text_field :name, placeholder: 'Name', class: 'form-control input-sm'
+            .col-md-3
+                = f.submit 'Add New Style', class: 'btn btn-primary btn-sm'

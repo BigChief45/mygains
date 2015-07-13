@@ -1,0 +1,38 @@
+.col-md-10.col-md-offset-1
+    .row
+        .panel.panel-default
+            .panel-body
+                %h2= @exercise.name
+                
+                %p= @exercise.description
+                
+                %br
+                
+                / Find Latest Workouts with this exercise
+                %p.lead
+                    Last 
+                    = @exercise.name
+                    Workout:
+                    
+                .table-responsive
+                    %table.table.table-striped.table-hover
+                        %thead
+                            %tr
+                                %th.text-center Set #
+                                %th.text-center Weight (lbs)
+                                %th.text-center Reps
+                        %tbody
+                            - @last.exercise_sets.each_with_index do |set, i|
+                                %tr
+                                    %td.text-center= "Set #{i+1}"
+                                    %td.text-center= set.weight
+                                    %td.text-center= set.reps
+                %hr
+                
+                = link_to exercises_path do
+                    %span.glyphicon.glyphicon-arrow-left
+                    Back
+                    
+                = link_to edit_exercise_path(@exercise), class: 'pull-right' do
+                    %span.glyphicon.glyphicon-pencil
+                    Edit Exercise

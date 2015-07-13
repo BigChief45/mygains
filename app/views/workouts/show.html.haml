@@ -23,7 +23,7 @@
                                 .panel-heading
                                     %h1.panel-title Remarks
                                 .panel-body
-                                    %p= @workout.remarks
+                                    =simple_format h @workout.remarks
                 
                 .row
                     .col-md-10.col-md-offset-1

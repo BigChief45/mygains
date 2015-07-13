@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
     end
     
     def show
-    
+        @last = WorkoutExercise.where(exercise_id: @exercise.id).last
     end
     
     def edit
@@ -39,7 +39,15 @@ class ExercisesController < ApplicationController
     end
 
     def update
-    
+        respond_to do |format|
+            if @exercise.update(exercise_params)
+                format.html { redirect_to @exercise, :flash => { :success => 'Exercise updated successfully.' } }
+                format.json { render :show, status: :updated, location: @exercise }
+            else
+                format.html { render :edit, :flash => { :danger => 'There was an error updating the exercise' } }
+                format.json { render json: @exercise.errors, status: :unprocessable_entity }
+            end
+        end
     end
     
     def destroy
@@ -49,7 +57,7 @@ class ExercisesController < ApplicationController
     private
     
         def exercise_params
-           params.require(:exercise).permit(:name, :description, :user_id) 
+           params.require(:exercise).permit(:name, :description, :image, :user_id) 
         end
         
         def find_exercise
